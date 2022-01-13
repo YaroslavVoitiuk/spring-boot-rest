@@ -1,0 +1,10 @@
+### correct user data
+GET http://localhost:8080/authorize?user=user&password=qwerty123
+### wrong user password
+GET http://localhost:8080/authorize?user=user&password=qwerty
+### correct admin data
+GET http://localhost:8080/authorize?user=admin&password=admin
+### wrong admin password
+GET http://localhost:8080/authorize?user=admin&password=dasd
+### unauthorized user
+GET http://localhost:8080/authorize?user=newUser&password=user
