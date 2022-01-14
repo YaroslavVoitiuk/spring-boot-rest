@@ -8,3 +8,5 @@ GET http://localhost:8080/authorize?user=admin&password=admin
 GET http://localhost:8080/authorize?user=admin&password=dasd
 ### unauthorized user
 GET http://localhost:8080/authorize?user=newUser&password=user
+### empty input
+GET http://localhost:8080/authorize?user=&password=
