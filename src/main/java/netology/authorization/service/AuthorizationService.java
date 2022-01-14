@@ -3,6 +3,7 @@ package netology.authorization.service;
 import netology.authorization.exception.InvalidCredentials;
 import netology.authorization.exception.UnauthorizedUser;
 import netology.authorization.model.Authorities;
+import netology.authorization.model.User;
 import netology.authorization.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,13 @@ public class AuthorizationService {
         this.userRepository = userRepository;
     }
 
-    public List<Authorities> getAuthorities(String user, String password) {
-        if (isEmpty(user) || isEmpty(password)) {
+    public List<Authorities> getAuthorities(User user) {
+        if (isEmpty(user.getUsername()) || isEmpty(user.getPassword())) {
             throw new InvalidCredentials("User name or password is empty");
         }
-        List<Authorities> userAuthorities = userRepository.getUserAuthorities(user, password);
+        List<Authorities> userAuthorities = userRepository.getUserAuthorities(user);
         if (isEmpty(userAuthorities)) {
-            throw new UnauthorizedUser("Unknown user " + user);
+            throw new UnauthorizedUser("Unknown user " + user.getUsername());
         }
         return userAuthorities;
     }

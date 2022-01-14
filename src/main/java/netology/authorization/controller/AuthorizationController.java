@@ -3,10 +3,12 @@ package netology.authorization.controller;
 import netology.authorization.exception.InvalidCredentials;
 import netology.authorization.exception.UnauthorizedUser;
 import netology.authorization.model.Authorities;
+import netology.authorization.model.User;
 import netology.authorization.service.AuthorizationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -32,8 +34,9 @@ public class AuthorizationController {
     }
 
     @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@RequestParam("user") String user, @RequestParam("password") String password) {
-        return service.getAuthorities(user, password);
+    public List<Authorities> getAuthorities(@Valid User user) {
+        return service.getAuthorities(user);
     }
+
 
 }
